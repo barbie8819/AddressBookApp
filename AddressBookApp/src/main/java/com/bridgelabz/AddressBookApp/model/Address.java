@@ -1,22 +1,26 @@
 package com.bridgelabz.AddressBookApp.model;
 
+import com.bridgelabz.AddressBookApp.dto.AddressDTO;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "addresses")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "address_book")
 public class Address {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    private String email;
-    private String phone;
-    private String city;
+    private String phoneNumber;
+    private String address;
+
+    public Address(AddressDTO dto) {
+        this.name = dto.getName();
+        this.phoneNumber = dto.getPhoneNumber();
+        this.address = dto.getAddress();
+    }
 }
